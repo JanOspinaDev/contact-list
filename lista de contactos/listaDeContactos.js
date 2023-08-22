@@ -1,20 +1,36 @@
-const contactos = ["Juan Perez", "Maria Lopez", "Carlos Ramirez"];
+let listaContactos = [];
 
-function agregarContacto(nombreApellido) {
-  contactos.push(nombreApellido);
+function crearContacto(id, nombres, apellidos, telefono, ubicaciones, ciudad, direccion) {
+    const contacto = {
+        id: id,
+        nombres: nombres,
+        apellidos: apellidos,
+        telefono: telefono,
+        ubicaciones: ubicaciones,
+        ciudad: ciudad,
+        direccion: direccion
+    };
+    
+    listaContactos.push(contacto);
+    console.log("Contacto creado:", contacto);
 }
 
-function borrarContacto(nombreApellido) {
-  const indice = contactos.indexOf(nombreApellido);
-  if (indice !== -1) {
-    contactos.splice(indice, 1);
-  } else {
-    console.log("El contacto no existe en la lista.");
-  }
+function eliminarContacto(id) {
+    const indice = listaContactos.findIndex(contacto => contacto.id === id);
+    
+    if (indice !== -1) {
+        const contactoEliminado = listaContactos.splice(indice, 1)[0];
+        console.log("Contacto eliminado:", contactoEliminado);
+    } else {
+        console.log("No se encontró un contacto con ese ID.");
+    }
 }
 
-function imprimirContactos() {
-  for (const contacto of contactos) {
-    console.log(contacto);
-  }
-}
+crearContacto(1, "Juan", "Pérez", "123456789", [], "Ciudad A", "Calle 123");
+crearContacto(2, "María", "López", "987654321", [], "Ciudad B", "Avenida 456");
+
+console.log(listaContactos);
+
+eliminarContacto(1);
+
+console.log(listaContactos);
