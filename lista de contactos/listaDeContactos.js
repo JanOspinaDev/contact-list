@@ -26,6 +26,17 @@ function eliminarContacto(id) {
     }
 }
 
+function actualizarContacto(id, nuevasPropiedades) {
+  const indice = listaContactos.findIndex(contacto => contacto.id === id);
+  
+  if (indice !== -1) {
+      listaContactos[indice] = { ...listaContactos[indice], ...nuevasPropiedades };
+      console.log("Contacto actualizado:", listaContactos[indice]);
+  } else {
+      console.log("No se encontró un contacto con ese ID.");
+  }
+}
+
 crearContacto(1, "Juan", "Pérez", "123456789", [], "Ciudad A", "Calle 123");
 crearContacto(2, "María", "López", "987654321", [], "Ciudad B", "Avenida 456");
 
